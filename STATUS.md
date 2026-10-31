@@ -10,6 +10,8 @@ A beginner manual and static website for using free AI to handle consumer-rights
 
 - `LICENSE` — MIT License, copyright line exactly `Copyright (c) 2026 Asdale Dynamics, LLC`
 - `README.md` — project overview, education-only disclaimer, privacy rules, credits Asdale Dynamics, LLC
+- `STATUS.md` — this file: what was built, how to run, verification results, known gaps
+- `scripts/verify.js` — runnable Node verification script (HTML validity, JS syntax, copyright line, credits, education-only disclaimer, privacy rules, secret/personal-data scan, topic coverage)
 - `docs/` — full beginner manual in Markdown:
   - `00-overview.md` — how to use, education-only notice, privacy safety rules
   - `01-free-ai-tools.md` — free web AI tools and local AI (Ollama, LM Studio), prompting guidance
@@ -22,29 +24,39 @@ A beginner manual and static website for using free AI to handle consumer-rights
 - `site/` — static HTML site (no build step, no server; open any page in a browser):
   - `index.html` — landing page
   - `warranty-claims.html`, `repair-or-replace.html`, `complaint-letters.html`, `small-claims-court.html` — topic pages with steps, AI prompts, checklists
-  - `demand-letters.html` — three printable demand-letter templates (warranty, repair-or-replace, complaint) with print CSS that hides navigation and paginates each letter
+  - `demand-letters.html` — three printable demand-letter templates (warranty, repair-or-replace, complaint) with print CSS and a Print button
   - `deadline-tracker.html` — local-first deadline tracker; data saved only in browser `localStorage`, with add/toggle/delete, print, export, and import
   - `assets/css/style.css` — shared styles including `@media print` rules
   - `assets/js/tracker.js` — vanilla JS tracker logic, no dependencies
 
 ## How to run it
 
-No installation required. Open `site/index.html` (or any page under `site/`) directly in a web browser. For printable letters, open `site/demand-letters.html` and use the browser's Print command. For the tracker, open `site/deadline-tracker.html`.
+No installation required. Open `site/index.html` (or any page under `site/`) directly in a web browser. For printable letters, open `site/demand-letters.html` and use the browser's Print command or the Print button on the page. For the tracker, open `site/deadline-tracker.html`.
 
 The Markdown manual in `docs/` can be read in any text editor or Markdown viewer.
 
-## Verification results
+## Verification
 
-- `node --check site/assets/js/tracker.js` — passed (syntax OK)
-- Custom HTML validity check (void elements and optional end tags handled) — all 7 `site/*.html` files passed
-- File tree confirmed: `LICENSE`, `README.md`, `docs/` (8 files), `site/` (7 HTML pages + css + js)
-- `LICENSE` line 3 contains exactly `Copyright (c) 2026 Asdale Dynamics, LLC`
+Run `node scripts/verify.js` from the project root. It checks:
+
+- All required files exist
+- No `.github/workflows` directory
+- `LICENSE` contains exactly `Copyright (c) 2026 Asdale Dynamics, LLC`
 - `README.md` credits Asdale Dynamics, LLC
-- No build step, no test framework, no secrets, API keys, or personal data in any file
+- `README.md` contains an education-only disclaimer
+- `README.md` mentions ID/financial-data privacy rules
+- No secrets, API keys, or personal data patterns in any file
+- JavaScript syntax is valid (`node --check`)
+- All HTML files have valid structure (void elements and optional end tags handled)
+- All required topics covered (warranty, small-claims, repair, complaint, deadline, template)
+
+### Last run results
+
+`node scripts/verify.js` — 40 passed, 0 failed.
 
 ## Known gaps
 
-- No automated test suite or linter configured (static site; verified with node syntax check and HTML parsing)
-- HTML validity checked with a lightweight custom parser, not a full HTML5 validator — pages render in standard browsers but were not run through the W3C validator
+- No automated test framework beyond `scripts/verify.js`; verification is a custom Node script, not a third-party test runner
+- HTML validity checked with a lightweight parser, not a full HTML5 validator such as the W3C validator
 - Deadline tracker stores data in browser `localStorage` only; clearing browser data deletes entries (mitigated by export/print features)
 - No attorney-reviewed legal content; all material is education-only, not legal advice
