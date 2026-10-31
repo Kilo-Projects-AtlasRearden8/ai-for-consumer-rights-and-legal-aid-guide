@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deadline Tracker — AI for Consumer Rights</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand">AI for Consumer Rights &amp; Legal Aid Guide</a>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="warranty-claims.html">Warranty Claims</a>
+      <a href="repair-or-replace.html">Repair or Replace</a>
+      <a href="complaint-letters.html">Complaint Letters</a>
+      <a href="small-claims-court.html">Small-Claims Court</a>
+      <a href="demand-letters.html">Demand Letter Templates</a>
+      <a href="deadline-tracker.html" style="background:var(--soft);color:var(--ink)">Deadline Tracker</a>
+    </nav>
+  </div>
+</header>
+<main class="container">
+  <h1>Deadline Tracker</h1>
+  <p>Track important dates: warranty claim deadlines, response deadlines in demand letters, court filing deadlines, and hearing dates.</p>
+
+  <div class="notice">
+    <strong>Private and local-first.</strong> Your deadlines are saved only in your web browser. Nothing is sent to a server, and nothing is stored by Asdale Dynamics. If you clear your browser data, your entries will be deleted — print or export your list regularly.
+  </div>
+
+  <div class="card tracker-card">
+    <div class="deadline-count" id="deadline-count">Loading…</div>
+    <form id="deadline-form" class="tracker-form">
+      <input type="text" id="field-title" placeholder="Title (e.g. Warranty claim deadline)" required>
+      <input type="date" id="field-date" required>
+      <textarea id="field-desc" placeholder="Description (optional)"></textarea>
+      <button class="btn" type="submit">Add</button>
+    </form>
+    <div id="deadline-list">No deadlines yet. Add your first one above.</div>
+    <div class="tracker-actions">
+      <button class="btn secondary" id="btn-print">Print</button>
+      <button class="btn secondary" id="btn-export">Export JSON</button>
+      <label style="display:flex;align-items:center;gap:6px;font-size:0.85rem;color:var(--muted)">
+        Import JSON <input type="file" id="field-import" accept=".json" style="margin:0">
+      </label>
+    </div>
+  </div>
+
+  <div class="notice">
+    <strong>Reminder aid only.</strong> Court deadlines are strict — verify them on your court's website and put them on your personal calendar too. This tracker is not legal advice.
+  </div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>Education only — not legal advice. Created by Dylan Asdale, founder of Asdale Dynamics, LLC (Indiana, formed October 2026). &copy; 2026 Asdale Dynamics, LLC.</p>
+  </div>
+</footer>
+<script src="assets/js/tracker.js"></script>
+</body>
+</html>
